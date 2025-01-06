@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -26,7 +27,8 @@ class LivreCrudController extends AbstractCrudController
         yield TextField::new('isbn');
         yield TextareaField::new('description');
         yield BooleanField::new('archive');
-        yield TextareaField::new('imageFile')->setFormType(VichImageType::class);
+        yield TextareaField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex();
+        yield ImageField::new('imageName')->setBasePath('/images/livres')->hideOnForm();
         yield AssociationField::new('auteur');
         yield AssociationField::new('editeur');
         yield AssociationField::new('genres');
